@@ -1,8 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ProfileDataService from "./services/profile.service";
 
 function App() {
+  console.log("ProfileDataService.getAll()", ProfileDataService.getAll())
   return (
     <div className="App">
       <header className="App-header">
