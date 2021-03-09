@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
-import { FirebaseDatabaseProvider } from "@react-firebase/database";
+import { combineReducers, createStore } from 'redux'
 
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import RouteController from "./RouteController";
+import profileStore from './stores/profile.store'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -13,9 +14,12 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'magnific-popup/src/css/main.scss';
 
+let reducer = combineReducers({profileStore});
+const store = createStore(reducer);
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter><RouteController /></BrowserRouter>
+    <BrowserRouter><RouteController store={store} /></BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

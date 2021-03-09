@@ -1,13 +1,14 @@
 import React from 'react'
-import RatingStar from './RatingStar';
+import { connect } from 'react-redux';
+import { profileStoreModel } from '../utils/models/profile.model';
 
-
-const Skill: React.FC<any> = props => {
+const Skill: React.FC<{increment: Function, profileStore: profileStoreModel}> = (props) => {
+  
   return (
     <div className="Skill">
       <section className="bg-blue-section-3 text-white mb-0" id="skill">
         <div className="container">
-          <h2 className="text-center text-uppercase text-white">Abilities</h2>
+          <h2 className="text-center text-uppercase text-white">Ability</h2>
           <hr className="star-light mb-5" />
           <div className="row">
             <div className="col-10 mx-auto">
@@ -15,57 +16,14 @@ const Skill: React.FC<any> = props => {
                 <h4 className="text-uppercase">Skills</h4>
                 <hr className="border-white" />
                 <div className="row mb-4">
-                  <div className="col-lg-6">
-                    <ul className="list-unstyled text--skill">
-                      <li className="lead mb-2">
-                        <strong className="w--60">Angular JS</strong>
-                        <span className="w--40 float-right"><RatingStar score={5} /></span>
+                  <div className="col-lg-12">
+                  <ul className="list-unstyled">
+                    {props.profileStore.skillResult.map((skill, key) => (
+                      <li key={key} className="lead mb-2">
+                        <strong>- {skill.title}</strong>: <span>{skill.details.join(", ")}</span>
                       </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">React + Redux</strong>
-                        <span className="w--40 float-right"><RatingStar score={4} /></span>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">NodeJS + Express</strong>
-                        <span className="w--40 float-right"><RatingStar score={4} /></span>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">Javascript ES 6</strong>
-                        <span className="w--40 float-right"><RatingStar score={5} /></span>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">Type Script</strong>
-                        <span className="w--40 float-right"><RatingStar score={5} /></span>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">Jquery</strong>
-                        <span className="w--40 float-right"><RatingStar score={5} /></span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col-lg-6">
-                    <ul className="list-unstyled text--skill">
-                      <li className="lead mb-2">
-                        <strong className="w--60">MySQL</strong>
-                        <span className="w--40 float-right"><RatingStar score={5} /></span>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">Codeigniter + HMVC</strong>
-                        <span className="w--40 float-right"><RatingStar score={5} /></span>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">Laravel</strong>
-                        <span className="w--40 float-right"><RatingStar score={3} /></span>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">Bootstrap 4</strong>
-                        <span className="w--40 float-right"><RatingStar score={5} /></span>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong className="w--60">CSS & SASS</strong>
-                        <span className="w--40 float-right"><RatingStar score={5} /></span>
-                      </li>
-                    </ul>
+                    ))}
+                  </ul>
                   </div>
                 </div>
                 <div className="row mb-2">
@@ -79,20 +37,13 @@ const Skill: React.FC<any> = props => {
                 <h4 className="text-uppercase">Tools</h4>
                 <hr className="border-white" />
                 <div className="row mb-4">
-                  <div className="col-lg-4">
+                  <div className="col-lg-12">
                     <ul className="list-unstyled">
-                      <li className="lead mb-2">
-                        <strong>- Visual Studio Code</strong>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong>- Navicat</strong>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong>- Postman</strong>
-                      </li>
-                      <li className="lead mb-2">
-                        <strong>- Github Desktop</strong>
-                      </li>
+                      {props.profileStore.toolResult.map((tool, key) => (
+                        <li key={key} className="lead mb-2">
+                          <strong>- {tool.title}</strong>: <span>{tool.details.join(", ")}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -103,10 +54,11 @@ const Skill: React.FC<any> = props => {
                 <div className="row mb-4">
                   <div className="col-lg-6 my-auto">
                     <ul className="list-unstyled">
-                      <li className="lead mb-2">
-                        <strong className="w--60">English</strong>
-                        <span className="w--40 float-right"><RatingStar score={3} /></span>
-                      </li>
+                      {props.profileStore.languageResult.map((language, key) => (
+                        <li key={key} className="lead mb-2">
+                          <strong>- {language.title}</strong>: <span>{language.details.join(", ")}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                   <div className="col-lg-6 my-auto"></div>
@@ -120,4 +72,8 @@ const Skill: React.FC<any> = props => {
   )
 }
 
-export default Skill;
+const mapStateToProps = (state: {profileStore: any}) => ({profileStore: state.profileStore});
+const mapDispatchToProps = (dispatch: any, ownProps: unknown) => ({increment(data: any, typeRequests: string) {
+  dispatch({type: typeRequests.toUpperCase(), value: data})
+}})
+export default connect(mapStateToProps, mapDispatchToProps)(Skill);

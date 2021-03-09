@@ -1,6 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
+$bg-dark-1: #313131;
+
 body {
 	margin: 0;
 	padding: 0;
@@ -18,19 +20,25 @@ code {
   
 
 .bg-dark-section-1{
-	background-color: #313131;
+	background-color: $bg-dark-1 !important;
 }
 .bg-dark-section-2{
 	background-color: #c3c3c3;
 }
+.bg-dark-section-3{
+	background-color: #ececec;
+}
 .bg-blue-section-3{
-	background-color: #002042;
+	background-color: $bg-dark-1;
 }
 .star-danger{
 	background: #ff0c0c;
 }
 .h-100-px{
 	height: 100px !important;
+}
+.hm-100-px{
+	max-height: 100px !important;
 }
 .font-inherit{
 	font-family: inherit;
@@ -61,4 +69,27 @@ code {
 	@media (max-width: 576px) {
 		font-size: 16px;;
 	}
+}
+
+hr.star-light:after {
+	color: #fff;
+	background-color: #6c757d;
+}
+
+// fix default stylesheet
+#mainNav .navbar-nav li.nav-item a.nav-link.active {
+	color: $bg-dark-1;
+}
+@media (min-width: 992px) {
+	#mainNav .navbar-nav>li.nav-item>a.nav-link.active {
+    color: #fff;
+    background: $bg-dark-1;
+	}
+	#mainNav .navbar-nav>li.nav-item>a.nav-link.active:active, #mainNav .navbar-nav>li.nav-item>a.nav-link.active:focus, #mainNav .navbar-nav>li.nav-item>a.nav-link.active:hover {
+    color: #fff;
+    background: $bg-dark-1;
+	}
+	#mainNav .navbar-nav li.nav-item a.nav-link:hover {
+    color: $bg-dark-1;
+}
 }

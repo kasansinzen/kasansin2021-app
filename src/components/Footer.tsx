@@ -4,7 +4,7 @@ const Footer: React.FC<any> = props => {
   return (
     <div className="Footer">
       {/* Footer */}
-      <footer className="footer text-center">
+      <footer className="footer text-center bg-secondary">
         <div className="container">
           <div className="row">
             {/* <div className="col-md-4 mb-5 mb-lg-0">
@@ -38,12 +38,6 @@ const Footer: React.FC<any> = props => {
           </div>
         </div>
       </footer>
-
-      <div className="copyright py-4 text-center text-white">
-        <div className="container">
-          <small>Copyright &copy; Your Website 2018</small>
-        </div>
-      </div>
 
       {/* Scroll to Top Button (Only visible on small and extra-small screen sizes) */}
       <div className="scroll-to-top d-lg-none position-fixed ">
