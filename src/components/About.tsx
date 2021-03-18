@@ -12,7 +12,7 @@ const About: React.FC<{increment: Function, profileStore: profileStoreModel}> = 
           <hr className="star-dark mb-5" />
           <div className="row">
             {props.profileStore.aboutResult.map((about, key) => (
-              <div key={key} className={classnames('col-lg-4', {'ml-auto': key%2 == 0, 'mr-auto': key%2 != 0})} >
+              <div key={key} className={classnames('col-lg-12')} >
                 <p className="lead">{about.description}</p>
               </div>
             ))}
