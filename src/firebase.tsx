@@ -1,7 +1,4 @@
 import firebase from 'firebase';
-// import dotenv from 'dotenv'
-// dotenv.config();
-console.log("process.env", process.env['FIREBASE_API_KEY'])
 const firebaseConfig = {
   apiKey: "AIzaSyBSeiy869hYxTVW1nsVAozutthjMzrwQQA",
   authDomain: "kasansin-3e31b.firebaseapp.com",
