@@ -20,14 +20,18 @@ const Skill: React.FC<{increment: Function, profileStore: profileStoreModel}> = 
                   <ul className="list-unstyled">
                     {props.profileStore.skillResult.map((skill, key) => (
                       <li key={key} className="lead mb-2">
-                        <strong>- {skill.title}</strong>: <span>{skill.details.join(", ")}</span>
+                        <strong>- {skill.title}</strong>{skill.details.length > 0 && ":"} <span>{skill.details.join(", ")}</span>
                       </li>
                     ))}
                   </ul>
                   </div>
                 </div>
                 <div className="row mb-2">
-                  <div className="col-12 text-center">
+                  <div className="col-12 col-md text-center">
+                    <p className="font-italic">This is Profile on Linked.</p>
+                    <a href="https://www.linkedin.com/in/kasansin-khamsat" rel="noopener noreferrer" className="btn btn-secondary" target="_blank">See more on Linked</a>
+                  </div>
+                  <div className="col-12 col-md text-center">
                     <p className="font-italic">This project is build on a custom.</p>
                     <a href="https://github.com/kasansinzen" rel="noopener noreferrer" className="btn btn-secondary" target="_blank">See project on Github</a>
                   </div>
@@ -41,7 +45,7 @@ const Skill: React.FC<{increment: Function, profileStore: profileStoreModel}> = 
                     <ul className="list-unstyled">
                       {props.profileStore.toolResult.map((tool, key) => (
                         <li key={key} className="lead mb-2">
-                          <strong>- {tool.title}</strong>: <span>{tool.details.join(", ")}</span>
+                          <strong>- {tool.title}</strong>{tool.details.length > 0 && ":"} <span>{tool.details.join(", ")}</span>
                         </li>
                       ))}
                     </ul>
