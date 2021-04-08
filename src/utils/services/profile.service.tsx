@@ -6,7 +6,7 @@ const storage = firebase.storage();
 class ProfileDataService {
 
   async getAbouts() {
-    return await db.collection("abouts").get();
+    return await db.collection("abouts").orderBy('order', 'asc').get();
   }
   async getSkills() {
     return await db.collection("skills").orderBy('order', 'asc').get();
