@@ -35,6 +35,10 @@ const Skill: React.FC<{increment: Function, profileStore: profileStoreModel}> = 
                     <p className="font-italic">This project is build on a custom.</p>
                     <a href="https://github.com/kasansinzen" rel="noopener noreferrer" className="btn btn-secondary" target="_blank">See project on Github</a>
                   </div>
+                  <div className="col-12 col-md text-center">
+                    <p className="font-italic">This graduation project.</p>
+                    <a href="https://drive.google.com/file/d/1E5YJNVraGVsV9u2DU5JdzlJEFdf4DdjF/view?usp=sharing" rel="noopener noreferrer" className="btn btn-secondary" target="_blank">See project on .pdf</a>
+                  </div>
                 </div>
               </div>
               <div className="form-group mb-5">
