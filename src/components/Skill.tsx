@@ -1,9 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { profileStoreModel } from '../utils/models/profile.model';
+import { ILanguageResult, ISkillResult, IToolResult } from '../utils/interfaces/master.interface';
+import { FirebaseService } from '../utils/services/firebase.service';
 
-const Skill: React.FC<{increment: Function, profileStore: profileStoreModel}> = (props) => {
+interface IProps {}
+const Skill: React.FC<IProps> = (props) => {
+
+  const [resultSkill, setResultSkill] = React.useState<ISkillResult[]>([]);
+  const [resultTools, setResultTools] = React.useState<IToolResult[]>([]);
+  const [resultLanguage, setResultLanguage] = React.useState<ILanguageResult[]>([]);
   
+  React.useEffect(() => {
+    FirebaseService.getSkills().then(result => setResultSkill(result));
+    FirebaseService.getTools().then(result => setResultTools(result));
+    FirebaseService.getLanguages().then(result => setResultLanguage(result));
+  }, []);
   return (
     <div className="Skill">
       <section className="bg-blue-section-3 text-white mb-0" id="skill">
@@ -18,7 +29,7 @@ const Skill: React.FC<{increment: Function, profileStore: profileStoreModel}> = 
                 <div className="row mb-4">
                   <div className="col-lg-12">
                   <ul className="list-unstyled">
-                    {props.profileStore.skillResult.map((skill, key) => (
+                    {resultSkill.map((skill, key) => (
                       <li key={key} className="lead mb-2">
                         <strong>- {skill.title}</strong>{skill.details.length > 0 && ":"} <span>{skill.details.join(", ")}</span>
                       </li>
@@ -47,7 +58,7 @@ const Skill: React.FC<{increment: Function, profileStore: profileStoreModel}> = 
                 <div className="row mb-4">
                   <div className="col-lg-12">
                     <ul className="list-unstyled">
-                      {props.profileStore.toolResult.map((tool, key) => (
+                      {resultTools.map((tool, key) => (
                         <li key={key} className="lead mb-2">
                           <strong>- {tool.title}</strong>{tool.details.length > 0 && ":"} <span>{tool.details.join(", ")}</span>
                         </li>
@@ -62,7 +73,7 @@ const Skill: React.FC<{increment: Function, profileStore: profileStoreModel}> = 
                 <div className="row mb-4">
                   <div className="col-lg-6 my-auto">
                     <ul className="list-unstyled">
-                      {props.profileStore.languageResult.map((language, key) => (
+                      {resultLanguage.map((language, key) => (
                         <li key={key} className="lead mb-2">
                           <strong>- {language.title}</strong>: <span>{language.details.join(", ")}</span>
                         </li>
