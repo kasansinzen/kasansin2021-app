@@ -27,12 +27,12 @@ const Exprerience: React.FC<IProps> = props => {
                 <hr />
                 {resultCareer.map((career, key) => (
                   <div key={key} className="row mb-2">
-                    <div className="col-lg-2 text-center">
-                      {career.images.map((imageUrl, key) => <img key={key} src={imageUrl} className="img-fluid hm-100-px" />)}
-                    </div>
-                    <div className="col-lg-10 my-auto lead mb-2">
-                      <strong className="text-uppercase">{career.title}</strong><br />
+                    <div className="col-lg-3">
+                      {/* {career.images.map((imageUrl, key) => <img key={key} src={imageUrl} className="img-fluid hm-100-px" />)} */}
                       <strong className="text-uppercase">{career.durationTitle}</strong><br />
+                    </div>
+                    <div className="col-lg-9 my-auto lead mb-2">
+                      <strong className="text-uppercase">{career.title}</strong><br />
                       <p>{career.description}</p>
                       <ul>
                         {career.tasks.map((task, key) => <li key={key}> {task.taskTitle && (<strong>{task.taskTitle}: </strong>)}{task.taskDetails.join(", ")}</li>)}
@@ -46,14 +46,9 @@ const Exprerience: React.FC<IProps> = props => {
                 <hr />
                 {resultEducation.map((education, key) => (
                   <div key={key} className="row mb-2">
-                    <div className="col-lg-2 text-center">
-                      {education.images.map((imgUrl, key) => {
-                        FirebaseService.getStorageRef(imgUrl).then(image => <img key={key} src={image} className="img-fluid h-100-px" />)
-                      })}
-                      {education.images.map((imgUrl, key) => <img key={key} src={imgUrl} className="img-fluid h-100-px" />)}
-                    </div>
-                    <div className="col-lg-10 my-auto">
-                      <p className="lead mb-2"><strong>{education.durationTitle} {education.title}</strong><br />{education.description}</p>
+                    
+                    <div className="col-lg-12 my-auto">
+                      <p className="lead mb-2"><strong>{education.durationTitle} | {education.title}</strong><br />{education.description}</p>
                     </div>
                   </div>
                 ))}
